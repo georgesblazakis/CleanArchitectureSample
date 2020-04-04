@@ -1,9 +1,10 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using CleanArchitectureSample.Domain.Common;
 
 namespace CleanArchitectureSample.Domain.Entities
 {
-    public class User
+    public class User : AuditEntity
     {
         [Key]
         public int Id { get; set; }

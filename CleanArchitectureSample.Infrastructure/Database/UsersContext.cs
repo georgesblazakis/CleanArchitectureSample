@@ -1,4 +1,4 @@
-﻿using System;
+﻿    using System;
 using System.Threading;
 using System.Threading.Tasks;
 using CleanArchitectureSample.Application.Common.Interfaces;
@@ -10,15 +10,16 @@ namespace CleanArchitectureSample.Infrastructure.Database
 {
     public class UsersContext : DbContext, IUsersContext
     {
-
-        private readonly ICurrentUserService _currentUserService;
-
-
+        //private readonly ICurrentUserService _currentUserService;
+        private readonly IDateTime _dateTime;
         public UsersContext(
-            DbContextOptions<UsersContext> options,
-            ICurrentUserService currentUserService) : base(options)
+            DbContextOptions<UsersContext> options
+            //ICurrentUserService currentUserService
+            ,IDateTime dateTime
+            ) : base(options)
         {
-            _currentUserService = currentUserService;
+            _dateTime = dateTime;
+            //_currentUserService = currentUserService;
         }
 
         public DbSet<User> Users { get; set; }
@@ -30,12 +31,12 @@ namespace CleanArchitectureSample.Infrastructure.Database
                 switch (entry.State)
                 {
                     case EntityState.Added:
-                        entry.Entity.CreatedBy = _currentUserService.UserId;
-                        entry.Entity.Created = DateTime.UtcNow;
+                        entry.Entity.CreatedBy = null;
+                        entry.Entity.Created = _dateTime.Now;
                         break;
                     case EntityState.Modified:
-                        entry.Entity.LastModifiedBy = _currentUserService.UserId;
-                        entry.Entity.LastModified = DateTime.UtcNow;
+                        entry.Entity.LastModifiedBy = null;
+                        entry.Entity.LastModified = _dateTime.Now;
                         break;
                 }
             }

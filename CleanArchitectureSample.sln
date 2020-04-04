@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanArchitectureSample.Dom
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanArchitectureSample.Application", "CleanArchitectureSample.Application\CleanArchitectureSample.Application.csproj", "{45072F7C-9B03-4CA5-8D13-292C3DAF84BD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanArchitectureSample.Test", "CleanArchitectureSample.Test\CleanArchitectureSample.Test.csproj", "{514CE447-A53E-4363-950B-07CCF2DA189F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,5 +33,9 @@ Global
 		{45072F7C-9B03-4CA5-8D13-292C3DAF84BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{45072F7C-9B03-4CA5-8D13-292C3DAF84BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{45072F7C-9B03-4CA5-8D13-292C3DAF84BD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{514CE447-A53E-4363-950B-07CCF2DA189F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{514CE447-A53E-4363-950B-07CCF2DA189F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{514CE447-A53E-4363-950B-07CCF2DA189F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{514CE447-A53E-4363-950B-07CCF2DA189F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
