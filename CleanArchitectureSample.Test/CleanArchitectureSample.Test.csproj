@@ -20,6 +20,10 @@
     <Folder Include="IntegrationTests\" />
     <Folder Include="UnitTests\" />
     <Folder Include="IntegrationTests\Persistence\" />
+    <Folder Include="UnitTests\Application\" />
+    <Folder Include="UnitTests\Domain\" />
+    <Folder Include="UnitTests\Application\Users\" />
+    <Folder Include="UnitTests\Application\Common\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CleanArchitectureSample.Infrastructure\CleanArchitectureSample.Infrastructure.csproj" />

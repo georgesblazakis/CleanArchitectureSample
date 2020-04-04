@@ -12,6 +12,13 @@ namespace CleanArchitectureSample.Infrastructure.Database
     {
         //private readonly ICurrentUserService _currentUserService;
         private readonly IDateTime _dateTime;
+
+
+        public UsersContext(DbContextOptions<UsersContext> options)
+            : base(options)
+        {
+        }
+
         public UsersContext(
             DbContextOptions<UsersContext> options
             //ICurrentUserService currentUserService
