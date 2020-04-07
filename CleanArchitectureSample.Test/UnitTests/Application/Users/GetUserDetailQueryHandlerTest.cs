@@ -23,5 +23,16 @@ namespace CleanArchitectureSample.Test.UnitTests.Application.Users
             result.ShouldBeOfType<UserDetailVm>();
             result.Id.ShouldBe(5);
         }
+
+
+        [Fact]
+        public async Task GivenInvalidId_ThrowsNotFoundException()
+        {
+            var invalidId = 20;
+
+            var command = new GetUserDetailQuery { Id = invalidId };
+
+            await Assert.ThrowsAsync<NotFoundException>(() => getUserDetailQueryHandler.Handle(command, CancellationToken.None));
+        }
     }
 }

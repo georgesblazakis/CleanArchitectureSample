@@ -9,6 +9,11 @@
     <Folder Include="Common\Interfaces\" />
     <Folder Include="User\" />
     <Folder Include="Common\Mappings\" />
+    <Folder Include="User\Commands\" />
+    <Folder Include="User\Queries\" />
+    <Folder Include="User\Commands\CreateUser\" />
+    <Folder Include="User\Commands\DeleteUser\" />
+    <Folder Include="User\Commands\UpdateUser\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.3" />
