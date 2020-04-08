@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using CleanArchitectureSample.Application.Common.Interfaces;
 using MediatR;
 
-namespace CleanArchitectureSample.Application.User.Commands.CreateUser
+namespace CleanArchitectureSample.Application.Users.Commands.CreateUser
 {
     public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand>
     {

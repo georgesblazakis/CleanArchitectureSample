@@ -2,8 +2,10 @@
 using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
+using CleanArchitectureSample.Application.Users.Queries.GetUsersList;
 using CleanArchitectureSample.Infrastructure.Database;
 using CleanArchitectureSample.Test.UnitTests.Application.Common;
+using Shouldly;
 using Xunit;
 
 namespace CleanArchitectureSample.Test.UnitTests.Application.Users
@@ -22,8 +24,8 @@ namespace CleanArchitectureSample.Test.UnitTests.Application.Users
         {
             var result = await getUsersListQueryHandler.Handle(new GetUsersListQuery(), CancellationToken.None);
 
-            result.ShouldBeOfType<UsersListVm>();
-            result.Customers.Count.ShouldBe(3);
+            result.ShouldBeOfType<GetUsersListViewModel>();
+            result.Users.Count.ShouldBe(3);
         }
     }
 }

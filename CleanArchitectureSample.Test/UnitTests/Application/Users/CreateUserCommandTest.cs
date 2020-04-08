@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Threading;
-using CleanArchitectureSample.Application.User.Commands.CreateUser;
+using CleanArchitectureSample.Application.Users.Commands.CreateUser;
 using CleanArchitectureSample.Test.UnitTests.Application.Common;
 using MediatR;
 using Moq;
@@ -31,7 +31,7 @@ namespace CleanArchitectureSample.Test.UnitTests.Application.Users
             var result = createUserCommandHandler.Handle(new CreateUserCommand { Id = newUserId }, CancellationToken.None);
 
             // Assert
-            mediatorMock.Verify(m => m.Publish(It.Is<UserCreated>(cc => cc.CustomerId == newUserId), It.IsAny<CancellationToken>()), Times.Once);
+            mediatorMock.Verify(m => m.Publish(It.Is<UserCreatedNotification>(userCreated => userCreated.UserId == newUserId), It.IsAny<CancellationToken>()), Times.Once);
         }
     }
 }

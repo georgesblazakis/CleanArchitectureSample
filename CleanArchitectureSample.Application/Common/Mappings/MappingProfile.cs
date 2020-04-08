@@ -2,6 +2,8 @@
 using System.Linq;
 using System.Reflection;
 using AutoMapper;
+using CleanArchitectureSample.Application.Users.Queries;
+using CleanArchitectureSample.Domain.Entities;
 
 namespace CleanArchitectureSample.Application.Common.Mappings
 {
@@ -25,6 +27,8 @@ namespace CleanArchitectureSample.Application.Common.Mappings
                 var methodInfo = type.GetMethod("Mapping");
                 methodInfo?.Invoke(instance, new object[] { this });
             }
+
         }
+        
     }
 }

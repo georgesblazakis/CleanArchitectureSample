@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
+using CleanArchitectureSample.Application.Common.Exceptions;
+using CleanArchitectureSample.Application.Users.Queries.GetUserDetail;
 using CleanArchitectureSample.Test.UnitTests.Application.Common;
+using Shouldly;
 using Xunit;
 
 namespace CleanArchitectureSample.Test.UnitTests.Application.Users
@@ -16,16 +19,6 @@ namespace CleanArchitectureSample.Test.UnitTests.Application.Users
         }
 
         [Fact]
-        public async Task GetUserDetail()
-        {
-            var result = await getUserDetailQueryHandler.Handle(new GetUserDetailQuery {Id = 5 }, CancellationToken.None);
-
-            result.ShouldBeOfType<UserDetailVm>();
-            result.Id.ShouldBe(5);
-        }
-
-
-        [Fact]
         public async Task GivenInvalidId_ThrowsNotFoundException()
         {
             var invalidId = 20;
@@ -34,5 +27,17 @@ namespace CleanArchitectureSample.Test.UnitTests.Application.Users
 
             await Assert.ThrowsAsync<NotFoundException>(() => getUserDetailQueryHandler.Handle(command, CancellationToken.None));
         }
+
+        [Fact]
+        public async Task GetUserDetail()
+        {
+            var result = await getUserDetailQueryHandler.Handle(new GetUserDetailQuery {Id = 5 }, CancellationToken.None);
+
+            result.ShouldBeOfType<GetUserDetailViewModel>();
+            result.Id.ShouldBe(5);
+        }
+
+
+        
     }
 }

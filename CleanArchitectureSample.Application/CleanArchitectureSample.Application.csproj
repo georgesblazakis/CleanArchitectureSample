@@ -7,13 +7,18 @@
   <ItemGroup>
     <Folder Include="Common\" />
     <Folder Include="Common\Interfaces\" />
-    <Folder Include="User\" />
+    <Folder Include="Users\" />
     <Folder Include="Common\Mappings\" />
-    <Folder Include="User\Commands\" />
-    <Folder Include="User\Queries\" />
-    <Folder Include="User\Commands\CreateUser\" />
-    <Folder Include="User\Commands\DeleteUser\" />
-    <Folder Include="User\Commands\UpdateUser\" />
+    <Folder Include="Users\Commands\" />
+    <Folder Include="Users\Queries\" />
+    <Folder Include="Users\Commands\CreateUser\" />
+    <Folder Include="Users\Commands\DeleteUser\" />
+    <Folder Include="Users\Commands\UpdateUser\" />
+    <Folder Include="Common\Notifications\" />
+    <Folder Include="Common\Notifications\Models\" />
+    <Folder Include="Common\Exceptions\" />
+    <Folder Include="Users\Queries\GetUserDetail\" />
+    <Folder Include="Users\Queries\GetUsersList\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.3" />

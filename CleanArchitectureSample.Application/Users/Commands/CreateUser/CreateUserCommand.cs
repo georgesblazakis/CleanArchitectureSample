@@ -1,7 +1,7 @@
 ﻿using System;
 using MediatR;
 
-namespace CleanArchitectureSample.Application.User.Commands.CreateUser
+namespace CleanArchitectureSample.Application.Users.Commands.CreateUser
 {
     public class CreateUserCommand : IRequest
     {
