@@ -2,7 +2,9 @@
 using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
+using CleanArchitectureSample.Application.Common.Exceptions;
 using CleanArchitectureSample.Application.Common.Interfaces;
+using CleanArchitectureSample.Domain.Entities;
 using MediatR;
 
 namespace CleanArchitectureSample.Application.Users.Queries.GetUserDetail
@@ -18,9 +20,15 @@ namespace CleanArchitectureSample.Application.Users.Queries.GetUserDetail
             mapper = _mapper;
         }
 
-        public Task<GetUserDetailViewModel> Handle(GetUserDetailQuery request, CancellationToken cancellationToken)
+        public async Task<GetUserDetailViewModel> Handle(GetUserDetailQuery request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var entity = await usersContext.Users.FindAsync(request.Id);
+
+            if (entity == null)
+            {
+                throw new NotFoundException(nameof(User), request.Id);
+            }
+            return mapper.Map<GetUserDetailViewModel>(entity);
         }
     }
 }

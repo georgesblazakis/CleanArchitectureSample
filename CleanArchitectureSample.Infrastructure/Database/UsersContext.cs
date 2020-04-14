@@ -10,23 +10,13 @@ namespace CleanArchitectureSample.Infrastructure.Database
 {
     public class UsersContext : DbContext, IUsersContext
     {
-        //private readonly ICurrentUserService _currentUserService;
         private readonly IDateTime _dateTime;
 
+        public UsersContext(DbContextOptions<UsersContext> options): base(options) {}
 
-        public UsersContext(DbContextOptions<UsersContext> options)
-            : base(options)
-        {
-        }
-
-        public UsersContext(
-            DbContextOptions<UsersContext> options
-            //ICurrentUserService currentUserService
-            ,IDateTime dateTime
-            ) : base(options)
+        public UsersContext(DbContextOptions<UsersContext> options, IDateTime dateTime) : base(options)
         {
             _dateTime = dateTime;
-            //_currentUserService = currentUserService;
         }
 
         public DbSet<User> Users { get; set; }

@@ -14,7 +14,7 @@ namespace CleanArchitectureSample.Test.UnitTests.Application.Users
 
         public UpdateUserCommandTest() : base()
         {
-            updateUserCommandHandler = new UpdateUserCommandHandler(usersContext);
+            updateUserCommandHandler = new UpdateUserCommandHandler(usersContext, mapper);
         }
 
         [Fact]
@@ -27,7 +27,7 @@ namespace CleanArchitectureSample.Test.UnitTests.Application.Users
         }
 
         [Fact]
-        public async Task GivenValidId_DeleteUser()
+        public async Task GivenValidId_UpdateUser()
         {
             var validId = 5;
             var command = new UpdateUserCommand { Id = validId };
