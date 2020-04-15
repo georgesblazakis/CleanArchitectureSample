@@ -10,7 +10,6 @@ namespace CleanArchitectureSample.Infrastructure.Database
     {
         public static IServiceCollection AddPersistence(this IServiceCollection services, IConfiguration configuration)
         {
-
             services.AddDbContext<UsersContext>(options =>
                 options.UseSqlite(configuration.GetConnectionString("DefaultConnection")));
 

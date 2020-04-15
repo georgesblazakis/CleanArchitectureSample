@@ -4,6 +4,7 @@ using AutoMapper;
 using CleanArchitectureSample.Application.Common;
 using CleanArchitectureSample.Application.Common.Interfaces;
 using MediatR;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace CleanArchitectureSample.Application
@@ -14,8 +15,6 @@ namespace CleanArchitectureSample.Application
         {
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
             services.AddMediatR(Assembly.GetExecutingAssembly());
-            services.AddTransient<IDateTime, MachineDateTime>();
-
 
             return services;
         }

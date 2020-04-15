@@ -13,11 +13,13 @@ namespace CleanArchitectureSample.Application.Users.Commands.UpdateUser
     public class UpdateUserCommandHandler : IRequestHandler<UpdateUserCommand>
     {
         private readonly IUsersContext usersContext;
+        private readonly IMediator mediator;
         private readonly IMapper mapper;
 
-        public UpdateUserCommandHandler(IUsersContext _usersContext, IMapper _mapper)
+        public UpdateUserCommandHandler(IUsersContext _usersContext, IMediator _mediator, IMapper _mapper)
         {
             usersContext = _usersContext;
+            mediator = _mediator;
             mapper = _mapper;
         }
 
@@ -29,13 +31,17 @@ namespace CleanArchitectureSample.Application.Users.Commands.UpdateUser
             {
                 throw new NotFoundException(nameof(User), request.Id);
             }
-            var user = mapper.Map<User>(request);
-            usersContext.Users.Add(user);
 
+            entity.FirstName = request.FirstName;
+            entity.LastName = request.LastName;
+            entity.Email = request.Email;
+            entity.UserName = request.UserName;
+            entity.PasswordHash = request.PasswordHash;
+
+            //var user = mapper.Map<User>(request);
             await usersContext.SaveChangesAsync(cancellationToken);
-
+            await mediator.Publish(new UserUpdatedNotification { UserId = entity.Id }, cancellationToken);
             return Unit.Value;
-
         }
     }
 }

@@ -1,9 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
+using CleanArchitectureSample.Application.Common.Exceptions;
 using CleanArchitectureSample.Application.Common.Interfaces;
+using CleanArchitectureSample.Domain.Entities;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
@@ -22,13 +25,17 @@ namespace CleanArchitectureSample.Application.Users.Queries.GetUsersList
 
         public async Task<GetUsersListViewModel> Handle(GetUsersListQuery request, CancellationToken cancellationToken)
         {
-            var users = await usersContext.Users.ProjectTo<GetUserListDTO>(mapper.ConfigurationProvider)
+            var usersDTO = await usersContext.Users
+                .ProjectTo<GetUserListDTO>(mapper.ConfigurationProvider)
                 .ToListAsync(cancellationToken);
 
-            var userList = new GetUsersListViewModel
+            if (usersDTO == null)
             {
-                Users = users
-            };
+                throw new NotFoundException(nameof(User), request);
+            }
+
+            //var usersDTO = mapper.Map<List<User>, List<GetUserListDTO>>(users);
+            var userList = new GetUsersListViewModel{ Users = usersDTO };
 
             return userList;
         }

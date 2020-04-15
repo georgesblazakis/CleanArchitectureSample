@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using AutoMapper;
@@ -6,6 +7,7 @@ using CleanArchitectureSample.Application.Users.Commands.CreateUser;
 using CleanArchitectureSample.Application.Users.Commands.UpdateUser;
 using CleanArchitectureSample.Application.Users.Queries;
 using CleanArchitectureSample.Application.Users.Queries.GetUserDetail;
+using CleanArchitectureSample.Application.Users.Queries.GetUsersList;
 using CleanArchitectureSample.Domain.Entities;
 
 namespace CleanArchitectureSample.Application.Common.Mappings
@@ -34,6 +36,7 @@ namespace CleanArchitectureSample.Application.Common.Mappings
             CreateMap<CreateUserCommand, User>();
             CreateMap<UpdateUserCommand, User>();
             CreateMap<User, GetUserDetailViewModel>();
+            CreateMap<User, GetUserListDTO>();
 
 
         }

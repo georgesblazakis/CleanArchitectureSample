@@ -12,7 +12,7 @@ namespace CleanArchitectureSample.Test.IntegrationTests.Persistence
 {
     public class UsersContextTest : IDisposable
     {
-        private readonly UsersContext _sut;
+        private readonly UsersContext _userContext;
         private readonly DateTime _dateTime;
         private readonly Mock<IDateTime> _dateTimeMock;
 
@@ -26,9 +26,9 @@ namespace CleanArchitectureSample.Test.IntegrationTests.Persistence
                 .UseInMemoryDatabase(Guid.NewGuid().ToString())
                 .Options;
 
-            _sut = new UsersContext(options, _dateTimeMock.Object);
+            _userContext = new UsersContext(options, _dateTimeMock.Object);
 
-            _sut.Users.Add(new Domain.Entities.User
+            _userContext.Users.Add(new Domain.Entities.User
             {
                 Id = 1,
                 FirstName = "John",
@@ -37,7 +37,7 @@ namespace CleanArchitectureSample.Test.IntegrationTests.Persistence
                 UserName = "John.b",
                 PasswordHash = "12345"
             });
-            _sut.SaveChanges();
+            _userContext.SaveChanges();
         }
 
         [Fact]
@@ -52,9 +52,9 @@ namespace CleanArchitectureSample.Test.IntegrationTests.Persistence
                 UserName = "Marc.j",
                 PasswordHash = "123456"
             };
-            _sut.Users.Add(user);
+            _userContext.Users.Add(user);
 
-            await _sut.SaveChangesAsync();
+            await _userContext.SaveChangesAsync();
             user.Created.ShouldBe(_dateTime);
             //user.CreatedBy.ShouldBe(_userId);
         }
@@ -62,11 +62,11 @@ namespace CleanArchitectureSample.Test.IntegrationTests.Persistence
         [Fact]
         public async Task SaveChangesAsync_GivenExistingUser_ShouldSetLastModifiedProperties()
         {
-            var user = await _sut.Users.FindAsync(1);
+            var user = await _userContext.Users.FindAsync(1);
 
             user.Email = "xxxx@gmail.com";
             
-            await _sut.SaveChangesAsync();
+            await _userContext.SaveChangesAsync();
 
             user.LastModified.ShouldNotBeNull();
             user.LastModified.ShouldBe(_dateTime);
@@ -76,7 +76,7 @@ namespace CleanArchitectureSample.Test.IntegrationTests.Persistence
 
         public void Dispose()
         {
-            _sut?.Dispose();
+            _userContext?.Dispose();
         }
     }
 }

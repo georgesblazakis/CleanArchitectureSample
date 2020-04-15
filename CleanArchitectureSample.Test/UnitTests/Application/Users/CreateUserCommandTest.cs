@@ -11,22 +11,19 @@ namespace CleanArchitectureSample.Test.UnitTests.Application.Users
 {
     public class CreateUserCommandTest : ContextHandleTestBase
     {
-        //private readonly CreateUserCommandHandler createUserCommandHandler;
-        //private readonly Mock<IMediator> mediatorMock;
+        private readonly CreateUserCommandHandler createUserCommandHandler;
+        private readonly Mock<IMediator> mediatorMock;
 
-        //public CreateUserCommandTest() : base()
-        //{
-        //    mediatorMock = new Mock<IMediator>();
-
-        //}
+        public CreateUserCommandTest() : base()
+        {
+            mediatorMock = new Mock<IMediator>();
+            createUserCommandHandler = new CreateUserCommandHandler(usersContext, mediatorMock.Object, mapper);
+        }
 
         [Fact]
         public void GivenValidRequest_ShouldRaiseUserCreatedNotification()
         {
             // Arrange
-            var mediatorMock = new Mock<IMediator>();
-            var createUserCommandHandler = new CreateUserCommandHandler(usersContext, mediatorMock.Object, mapper);
-
             var userCommand = new CreateUserCommand() {
                 Id = 11,
                 FirstName = "Peter",

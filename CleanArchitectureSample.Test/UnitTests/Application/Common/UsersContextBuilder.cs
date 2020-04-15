@@ -1,7 +1,9 @@
 ﻿using System;
+using CleanArchitectureSample.Application.Common.Interfaces;
 using CleanArchitectureSample.Domain.Entities;
 using CleanArchitectureSample.Infrastructure.Database;
 using Microsoft.EntityFrameworkCore;
+using Moq;
 
 namespace CleanArchitectureSample.Test.UnitTests.Application.Common
 {
@@ -12,7 +14,9 @@ namespace CleanArchitectureSample.Test.UnitTests.Application.Common
             var options = new DbContextOptionsBuilder<UsersContext>()
                 .UseInMemoryDatabase(Guid.NewGuid().ToString())
                 .Options;
-            var context = new UsersContext(options);
+            var dateTime = new Mock<IDateTime>();
+
+            var context = new UsersContext(options, dateTime.Object);
             context.Database.EnsureCreated();
 
             context.Users.AddRange(new[] {
