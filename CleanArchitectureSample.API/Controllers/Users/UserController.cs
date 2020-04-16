@@ -9,11 +9,27 @@ using CleanArchitectureSample.Application.Users.Queries.GetUserDetail;
 using CleanArchitectureSample.Application.Users.Queries.GetUsersList;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 
 namespace CleanArchitectureSample.API.Controllers.Users
 {
     public class UserController : BaseController
     {
+        private readonly IConfiguration configuration;
+
+        public UserController(IConfiguration _configuration)
+        {
+            configuration = _configuration;
+        }
+
+
+        // GET: api/User
+        [HttpGet]
+        public ActionResult<string> GetStageTest()
+        {
+            return Ok(configuration["Greeting"]);
+        }
+
         // GET: api/User
         [HttpGet]
         public async Task<ActionResult<GetUsersListViewModel>> GetAll()
