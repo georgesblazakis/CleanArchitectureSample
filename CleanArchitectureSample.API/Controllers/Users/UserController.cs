@@ -33,9 +33,9 @@ namespace CleanArchitectureSample.API.Controllers.Users
 
         // GET: api/User
         [HttpGet]
-        public ActionResult<string> GetStageSwapTest()
+        public InvalidOperationException GetStageSwapTest()
         {
-            return Ok(configuration["Greeting"]);
+            return new InvalidOperationException("Sorry, this feature is not supported");
         }
 
         // GET: api/User

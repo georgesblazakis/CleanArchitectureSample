@@ -34,6 +34,8 @@ namespace CleanArchitectureSample.API
             services.AddPersistence(Configuration);
             services.AddApplication();
             services.AddControllers();
+            services.AddApplicationInsightsTelemetry(Configuration);
+
 
             services.AddOpenApiDocument(configure =>
             {
