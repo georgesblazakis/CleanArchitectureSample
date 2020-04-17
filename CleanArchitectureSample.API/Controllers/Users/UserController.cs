@@ -30,6 +30,14 @@ namespace CleanArchitectureSample.API.Controllers.Users
             return Ok(configuration["Greeting"]);
         }
 
+
+        // GET: api/User
+        [HttpGet]
+        public ActionResult<string> GetStageSwapTest()
+        {
+            return Ok(configuration["Greeting"]);
+        }
+
         // GET: api/User
         [HttpGet]
         public async Task<ActionResult<GetUsersListViewModel>> GetAll()
