@@ -10,12 +10,19 @@ namespace CleanArchitectureSample.Infrastructure.Database
     {
         public static IServiceCollection AddPersistence(this IServiceCollection services, IConfiguration configuration)
         {
-            //if(Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Production")
             
-            services.AddDbContext<UsersContext>(options =>
-                options.UseSqlite(configuration.GetConnectionString("DefaultConnection")));
+            if(Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Production")
+                services.AddDbContext<UsersContext>(options =>
+                    options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
+            else
+                services.AddDbContext<UsersContext>(options =>
+                    options.UseSqlite("Data Source=user.db"));
 
             services.AddScoped<IUsersContext>(provider => provider.GetService<UsersContext>());
+
+
+            services.BuildServiceProvider().GetService<UsersContext>().Database.Migrate();
+
 
             return services;
         }
