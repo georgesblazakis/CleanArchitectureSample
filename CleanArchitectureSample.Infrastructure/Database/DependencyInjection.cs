@@ -10,6 +10,8 @@ namespace CleanArchitectureSample.Infrastructure.Database
     {
         public static IServiceCollection AddPersistence(this IServiceCollection services, IConfiguration configuration)
         {
+            //if(Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Production")
+            
             services.AddDbContext<UsersContext>(options =>
                 options.UseSqlite(configuration.GetConnectionString("DefaultConnection")));
 

@@ -27,7 +27,7 @@ namespace CleanArchitectureSample.API.Controllers.Users
         [HttpGet]
         public ActionResult<string> GetStageTest()
         {
-            return Ok(configuration["Greeting"]);
+            return Ok(Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT"));
         }
 
 
