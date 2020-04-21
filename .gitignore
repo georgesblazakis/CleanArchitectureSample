@@ -405,3 +405,6 @@ ASALocalRun/
 .localhistory/
 .vscode/launch.json
 .vscode/tasks.json
+CleanArchitectureSample.API/user.db
+CleanArchitectureSample.API/user.db-shm
+CleanArchitectureSample.API/user.db-wal
