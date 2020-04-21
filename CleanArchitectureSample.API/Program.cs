@@ -25,10 +25,10 @@ namespace CleanArchitectureSample.API
                     var usersContext = services.GetRequiredService<UsersContext>();
                     usersContext.Database.Migrate();
                 }
-                catch (System.Exception ex)
+                catch (System.Exception)
                 {
-                    var logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
-                    logger.LogError(ex, "Error occurred while migrating or initializing the database.");   
+                    //var logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
+                    //logger.LogError(ex, "Error occurred while migrating or initializing the database.");   
                 }
             }
             host.Run();
