@@ -19,10 +19,7 @@ namespace CleanArchitectureSample.Infrastructure.Database
                     options.UseSqlite("Data Source=user.db"));
 
             services.AddScoped<IUsersContext>(provider => provider.GetService<UsersContext>());
-
-
             services.BuildServiceProvider().GetService<UsersContext>().Database.Migrate();
-
 
             return services;
         }
